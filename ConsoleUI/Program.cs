@@ -22,9 +22,9 @@ namespace ConsoleUI
             #endregion
 
 
-            CarDetail(); 
+            CarDetail();
 
-           
+
             // araç güncelleme
             //carManager.Update(new Car
             //{
@@ -101,10 +101,21 @@ namespace ConsoleUI
             Console.WriteLine("\nAraç\t\tMarka\t Renk\tÜcret\tAçıklama");
             Console.WriteLine("------------------------------------------------");
 
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+
+            if (result.Success)
             {
-                Console.WriteLine(car.CarName + "\t" + car.BrandName + "\t" + car.ColorName + "\t " + car.DailyPrice + "\t" + car.Description);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName + "\t" + car.BrandName + "\t" + car.ColorName + "\t " + car.DailyPrice + "\t" + car.Description);
+                }
+                Console.WriteLine("\n" + result.Message);
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
     }
 }
