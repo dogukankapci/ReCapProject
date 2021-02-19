@@ -22,7 +22,51 @@ namespace ConsoleUI
             #endregion
 
 
-            CarDetail();
+            // CarDetail();
+            // GetUsers();
+
+            //UserManager userManager = new UserManager(new EfUserDal());
+
+            // Yeni User ekleme:
+            //var result = userManager.Add(new User
+            //{
+            //    FirstName = "Berkay",
+            //    LastName = "Başarın",
+            //    Email = "berkay@berkay.com",
+            //    Password = "abc123"
+            //});
+
+            //if (result.Success)
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+
+            //Console.WriteLine();
+
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer
+            {
+                UserId = 5,
+                CompanyName = "ReCap Rent A Car"
+            });
+
+            var result = customerManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var customer in result.Data)
+                {
+                    Console.WriteLine(customer.UserId + " " + customer.CompanyName);
+                }
+            }
+
+
+
+
 
 
             // araç güncelleme
@@ -92,6 +136,22 @@ namespace ConsoleUI
             //    Console.WriteLine(car.Name);
             //}
 
+        }
+
+        private static void GetUsers()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result2 = userManager.GetAll();
+            if (result2.Success)
+            {
+                foreach (var user in result2.Data)
+                {
+                    Console.WriteLine(user.FirstName + " " + user.LastName);
+                }
+
+                Console.WriteLine("\n" + result2.Message);
+
+            }
         }
 
         private static void CarDetail()

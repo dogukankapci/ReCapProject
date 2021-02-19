@@ -14,6 +14,8 @@ namespace Entities.Concrete
         public string ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
         public string Description { get; set; }
-
+        public Brand Brand { get; set; }
+        public Color Color { get; set; }
+        public Rental Rental { get; set; }
     }
 }
